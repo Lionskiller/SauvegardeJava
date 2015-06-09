@@ -34,6 +34,7 @@ public class PopupModifJeuRep extends JDialog implements ActionListener {
    private JPanel panelInt2;
    private JeuReponse jeurep;
    private JeuReponseDAO jeuRepDAO;
+   private Controle controleur;
 
     public PopupModifJeuRep() {	
 
@@ -46,7 +47,7 @@ public class PopupModifJeuRep extends JDialog implements ActionListener {
       panelGlobal.setLayout(new BorderLayout());
 
       titreJeuRep = new JLabel("Modifier jeu de réponses");
-
+      controleur = new Controle();
       panel1 = new JPanel();
       panel2 = new JPanel();
       panel3 = new JPanel();
@@ -97,8 +98,8 @@ public class PopupModifJeuRep extends JDialog implements ActionListener {
           }
           else {
           jeuRepDAO = new JeuReponseDAO(DBConnection.getInstance());
-          jeurep.setRep1(jeuRep1.getText());
-          jeurep.setRep2(jeuRep2.getText());
+          jeurep.setRep1(controleur.controleChaine(jeuRep1.getText()));
+          jeurep.setRep2(controleur.controleChaine(jeuRep2.getText()));
           jeuRepDAO.update(jeurep);
           jeuRep1.setText("");
           jeuRep2.setText("");

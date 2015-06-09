@@ -81,4 +81,7 @@ public class DBConnection{
         return connect;
     }
 
+	public static boolean getStatus() {
+		return statusConnection; 
+	}
 }

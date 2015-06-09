@@ -29,6 +29,7 @@ public class IntConnectionBDD extends JFrame  implements ActionListener {
     private JButton connection;
 
     private FenetreGraphique interfaceBDD;
+	private DialogErreur erreur;
 
 
 
@@ -102,14 +103,22 @@ public class IntConnectionBDD extends JFrame  implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == connection){
+
+	DBConnection.getFirstInstance(urlField.getText(), userField.getText(), passwordField.getText());
+            Connection connect = DBConnection.getInstance();
+	if ( !DBConnection.getStatus()) {
+		erreur = new DialogErreur();
+		erreur.setMessageCo();
+	}
+	else {
             interfaceBDD.setVisible(true);
             this.setVisible(false);
             System.out.println(userField.getText() + "  " + urlField.getText() + "   " + passwordField.getText());
 
-            DBConnection.getFirstInstance(urlField.getText(), userField.getText(), passwordField.getText());
-            Connection connect = DBConnection.getInstance();
+            
 		
 		interfaceBDD.getOngletCat().actuListe();
+	}
         }
     }
 

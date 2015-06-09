@@ -52,4 +52,7 @@ public class DialogErreur extends JOptionPane  {
 		dialog.showMessageDialog(null, "Il manque des questions au jeu de réponses: "+vecteurJeuRep.elementAt(i), "Attention un jeu de réponses doit contenir minimum 4 questions", JOptionPane.WARNING_MESSAGE);
 		}
 	}
+	public void setMessageCo() {
+		 dialog.showMessageDialog(null, "Le nom de la base, l'utilisateur ou le mot de passe est incorrect", "Attention", JOptionPane.WARNING_MESSAGE);	
+	}
 }

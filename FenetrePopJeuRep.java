@@ -47,6 +47,7 @@ public class FenetrePopJeuRep extends JDialog implements ActionListener {
   private String newquestion;
   private QuestionDAO questDAO;
   private int bonnerep;
+  private Controle controleur;
 
 
 
@@ -64,7 +65,7 @@ public class FenetrePopJeuRep extends JDialog implements ActionListener {
       panelInt1 = new JPanel();
       panelInt2 = new JPanel();
 
-
+      controleur = new Controle();
       popJeuRep = new JPanel();
       popJeuRep.setLayout(new BorderLayout());
       panel1.setLayout(new BorderLayout());
@@ -131,8 +132,9 @@ public class FenetrePopJeuRep extends JDialog implements ActionListener {
             erreur.catVide();
           }
           else if ( selectCat != null && !jeuRep1.getText().equals("") && !jeuRep2.getText().equals("") ) {
-            rep1 = jeuRep1.getText();
-            rep2 = jeuRep2.getText();
+            
+	    rep1 = controleur.controleChaine(jeuRep1.getText());
+	    rep2 = controleur.controleChaine(jeuRep2.getText());
             jeuRepDAO = new JeuReponseDAO(DBConnection.getInstance());
             jeuRepDAO.create(new JeuReponse( selectCat , jeuRepDAO.getMaxId() , rep1 , rep2 ));
             this.setVisible(false);

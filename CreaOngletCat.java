@@ -30,13 +30,13 @@ public class CreaOngletCat extends JPanel implements ActionListener  {
       private JButton boutonSup;
       private String element;
       //private JOptionPane dialogErreur;
-
+	private Controle controleur;
 
 	public CreaOngletCat() {
 
       /************************************** Initialisation de la liste de categories**********************************/
 
-      
+      	controleur = new Controle();
 	fonttitre = new Font("Arial",Font.BOLD , 20);
 
       titreOngletCat = new JLabel("Gestion des catégories");
@@ -109,6 +109,7 @@ public class CreaOngletCat extends JPanel implements ActionListener  {
                   }
                   else {
 			System.out.println("clic sur ajouter categorie");
+			texteAjout = controleur.controleChaine(texteAjout);
                         categorie.setLibelle(texteAjout);
                         catDAO.create(categorie);
                         this.actuListe();
